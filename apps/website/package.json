@@ -12,12 +12,19 @@
     "preview": "vp preview"
   },
   "dependencies": {
+    "@base-ui/react": "catalog:",
+    "@fontsource-variable/inter": "catalog:",
     "@tailwindcss/vite": "^4.1.18",
     "@tanstack/react-router": "latest",
     "@tanstack/react-start": "latest",
+    "class-variance-authority": "catalog:",
+    "cn": "catalog:",
+    "lucide-react": "catalog:",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "tailwindcss": "^4.1.18"
+    "shadcn": "catalog:",
+    "tailwindcss": "^4.1.18",
+    "tw-animate-css": "catalog:"
   },
   "devDependencies": {
     "@tanstack/router-cli": "^1.132.0",
@@ -28,11 +35,5 @@
     "typescript": "^6.0.2",
     "vite": "catalog:",
     "vite-plus": "catalog:"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "lightningcss"
-    ]
   }
 }

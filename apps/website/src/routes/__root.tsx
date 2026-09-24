@@ -31,7 +31,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body className="min-h-screen bg-slate-50 text-slate-900 antialiased">
+      <body className="min-h-screen antialiased">
         {children}
         <Scripts />
       </body>
