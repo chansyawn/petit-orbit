@@ -8,8 +8,8 @@
 .
 ├── apps/
 │   └── website/             # Wiki 网站应用（页面、路由与样式）
-├── external/
-│   ├── animestudio/          # 本地 AnimeStudio 工具（文件由 Git 忽略）
+├── resources/
+│   ├── anime-studio/         # 本地 AnimeStudio 工具（文件由 Git 忽略）
 │   └── petit-planet-game/    # 本地星布谷地客户端副本（文件由 Git 忽略）
 ├── .vscode/                  # VS Code 工作区配置
 ├── package.json              # 仓库级脚本和工具配置
@@ -22,8 +22,8 @@
 
 ## 本地资源处理
 
-- `external/petit-planet-game/`：本机星布谷地客户端副本，作为资源读取来源。
-- `external/animestudio/`：AnimeStudio 本地工具，用于浏览、预览和导出 Unity 游戏资源；上游项目：[Escartem/AnimeStudio](https://github.com/Escartem/AnimeStudio)。
+- `resources/petit-planet-game/`：本机星布谷地客户端副本，作为资源读取来源。
+- `resources/anime-studio/`：AnimeStudio 本地工具，用于浏览、预览和导出 Unity 游戏资源；上游项目：[Escartem/AnimeStudio](https://github.com/Escartem/AnimeStudio)。
 
 这两个目录中的大型文件由根目录 `.gitignore` 忽略；`.gitkeep` 占位文件会保留目录结构。
 

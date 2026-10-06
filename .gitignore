@@ -36,7 +36,7 @@ dist-ssr
 !.vscode/extensions.json
 
 # Local-only game assets and tools; keep directory markers, ignore contents
-/external/petit-planet-game/**
-!/external/petit-planet-game/.gitkeep
-/external/animestudio/**
-!/external/animestudio/.gitkeep
+/resources/petit-planet-game/**
+!/resources/petit-planet-game/.gitkeep
+/resources/anime-studio/**
+!/resources/anime-studio/.gitkeep
