@@ -35,8 +35,10 @@ dist-ssr
 !.vscode/settings.json
 !.vscode/extensions.json
 
-# Local-only game assets and tools; keep directory markers, ignore contents
-/resources/petit-planet-game/**
-!/resources/petit-planet-game/.gitkeep
-/resources/anime-studio/**
-!/resources/anime-studio/.gitkeep
+# Local resources are machine-specific; keep only directory markers
+/resources/**
+!/resources/**/
+!/resources/**/.gitkeep
+
+# Temporary extraction outputs are fully ignored and need no marker
+/resources/petit-planet-extraction/
