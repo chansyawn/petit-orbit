@@ -7,12 +7,17 @@
 ```text
 .
 ├── apps/
-│   └── website/             # Wiki 网站应用（页面、路由与样式）
+│   ├── website/             # Wiki 网站应用（页面、路由与样式）
+│   └── extraction/          # 客户端提取文档和脚本（按任务组织）
 ├── resources/
 │   ├── anime-studio/             # 本地 AnimeStudio 工具
-│   ├── petit-planet-game/        # 本地星布谷地客户端副本
-│   ├── petit-planet-index/       # Asset Map、CAB Map 索引文件
-│   └── petit-planet-extraction/ # 临时解包导出、菜谱数据、分析报告和日志
+│   ├── petit-planet-game/        # 按客户端版本保存游戏副本
+│   │   └── <version>/           # config.ini、可执行文件与 PetitPlanet_Data
+│   ├── petit-planet-extraction/  # 按版本保存共用索引和任务产物
+│   │   └── <version>/
+│   │       ├── index/           # Asset Map 等共用索引
+│   │       └── items/           # 物品提取产物、日志和验证结果
+│   └── temp/                   # 临时文件
 ├── .vscode/                  # VS Code 工作区配置
 ├── package.json              # 仓库级脚本和工具配置
 ├── pnpm-workspace.yaml       # pnpm workspace 与依赖版本配置
@@ -25,11 +30,16 @@
 ## 本地资源处理
 
 - `resources/anime-studio/`：AnimeStudio 本地工具，用于浏览、预览和导出 Unity 游戏资源；上游项目：[Escartem/AnimeStudio](https://github.com/Escartem/AnimeStudio)。
-- `resources/petit-planet-game/`：本机星布谷地客户端副本，作为资源读取来源。
-- `resources/petit-planet-index/`：保存本地客户端生成的 Asset Map 与 CAB Map 索引文件。
-- `resources/petit-planet-extraction/`：保存从游戏资源导出的文件、菜谱数据表、分析报告、日志和分析工具。
+- `resources/petit-planet-game/<version>/`：保存完整客户端副本，作为资源读取来源。
+- `resources/petit-planet-extraction/<version>/index/`：保存对应客户端的 Asset Map 等共用索引，供各提取任务读取。
+- `resources/petit-planet-extraction/<version>/<任务>/`：保存该版本的任务产物、日志和验证结果；当前任务为 `items`。
+- `resources/temp/`：用于存储临时文件。
 
-`resources/` 下所有本地内容均由根目录 `.gitignore` 忽略；AnimeStudio、游戏和索引目录保留 `.gitkeep` 占位文件。`petit-planet-extraction/` 用于存放临时导出和分析文件，整目录忽略，不保留 `.gitkeep`。
+`resources/` 下的本地资源文件由根目录 `.gitignore` 忽略，`resources/temp/` 整体忽略。
+
+维护中的提取脚本与文档位于 [apps/extraction](apps/extraction/README.md)，物品任务分别提供不依赖脚本的原理指南和对应当前实现的执行手册。安装仓库依赖并准备本地输入后，使用 `vp run --no-cache extraction#items` 提取，使用 `vp run extraction#test` 运行不依赖客户端的测试。
+
+目录中的 `<version>` 为客户端版本号，配置与资源 revision 保留在脚本配置和产物元数据中。提取任务使用仓库 Node 环境，不需要 Python。
 
 ## 本地开发
 

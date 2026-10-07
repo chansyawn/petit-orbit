@@ -40,5 +40,5 @@ dist-ssr
 !/resources/**/
 !/resources/**/.gitkeep
 
-# Temporary extraction outputs are fully ignored and need no marker
-/resources/petit-planet-extraction/
+# Temporary investigations are fully ignored, including any directory markers
+/resources/temp/

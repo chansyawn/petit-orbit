@@ -203,6 +203,12 @@ importers:
         specifier: 'catalog:'
         version: 1.0.0-rc.0(@types/node@26.6.2)(@vitest/ui@5.0.1)(jiti@2.7.0)(typescript@7.0.2)(yaml@2.9.1)
 
+  apps/extraction:
+    dependencies:
+      pngjs:
+        specifier: 7.0.0
+        version: 7.0.0
+
   apps/website:
     dependencies:
       '@base-ui/react':

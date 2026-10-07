@@ -1,0 +1,44 @@
+{
+  "source": {
+    "version": "0.95.2",
+    "dataRevision": 1379138,
+    "edSha256": "be33202931fb067a49a0a99f61735e4fcfc32fda0271e012e205695511197367"
+  },
+  "samples": [
+    {
+      "label": "odd icon path",
+      "length": 71,
+      "encodedHex": "776c452f75745c7571765b646367477175506a6f6277736279725a553f6c477456615c605a564f6a5a6d72655b6358587c463f625c527768772d74605a4e3f64416b6271664b45",
+      "expected": "UISprite/Load/BigPic/DIYHandbook_TopicFurn/TopicFurn_Representative.png"
+    },
+    {
+      "label": "long Chinese description",
+      "length": 353,
+      "encodedHex": "b483d69cb6e197bcd39cbbe4a898d092bfe5a981d48f89eebf83dc9a9be48385d1a9b2e99da1dd9b8ae7b5bfd3838be4babfda8c97ebb4b8d1a08ee59684d08689ebbabad18f89eeb893d0b7b2e49f86de9188e4a898d0bd87ea91b3dfb1bce9aca7d085ace48783de8ab5e893b4d0bb8ce7b9bdd9a68ee5b68ad383b6e0bc8fd080a5e4ba96d3a892e69ea3de90ade78fadd0a1bce6819ad08fb5e9babfdab2bfeba9b3dfb98de59698d09b8ae7b5bfd3818be692b3dca5a2e8b199d1ac8de7b5a3d0acb8e68387d1abb2ebbabdda8489e9b8bbd20bb783d58c92e4ae8ed087ace688bbd2af8fe78488dd9f94e88f84d399bae6a2bdd3998ae5aabad2b082e69c86ddbf87e891b1df8d89ecbdb9d18094e49a8dd1b7b1e49c86ddabaae4b9bfd98883e584b8d0b98ee58fb9d29488e78dbad18aaae794b1d0be88e7858cd009b481d68e91e6ad8cd385afe48ab0dca784e89a9bd0a587ea9095dcb1bfe9bcbbd2",
+      "expected": "三色锦鲤是鲤鱼的变种。\n即使没有任何人为干涉，在自然环境下，鲤鱼自己也会演变出颜色亮丽的变种。\n不过，自然环境中的锦鲤往往会因为鲜艳，而更加容易被天敌吃掉。所以，人工选育的多色鲤鱼回归自然后，经过几代繁衍，往往会被自然筛选，“打回原形”。"
+    }
+  ],
+  "buckets": [
+    {
+      "encodedHex": "5f023501fecafda0",
+      "expected": null
+    },
+    {
+      "encodedHex": "62452672010e3f5f",
+      "expected": {
+        "hash": 1028068211,
+        "index": 15165
+      }
+    }
+  ],
+  "scalars": [
+    {
+      "encodedHex": "530207bb",
+      "expectedUnsigned": 1512
+    },
+    {
+      "encodedHex": "acfdfd9f",
+      "expectedSigned": -52
+    }
+  ]
+}

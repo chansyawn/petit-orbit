@@ -1,0 +1,12 @@
+{
+  "name": "extraction",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "items": "node tasks/items/scripts/run.mjs",
+    "test": "node --test tasks/items/tests/*.test.mjs"
+  },
+  "dependencies": {
+    "pngjs": "7.0.0"
+  }
+}
