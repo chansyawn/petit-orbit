@@ -6,7 +6,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/ui/components/ui/dropdown-menu";
+} from "@/ui/components/dropdown-menu";
 import {
   Sidebar,
   SidebarContent,
@@ -18,7 +18,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
-} from "@/ui/components/ui/sidebar";
+} from "@/ui/components/sidebar";
 
 const versions = ["资料库", "开发中"];
 

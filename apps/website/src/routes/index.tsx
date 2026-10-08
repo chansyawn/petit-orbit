@@ -6,8 +6,8 @@ import {
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbPage,
-} from "@/ui/components/ui/breadcrumb";
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/ui/components/ui/sidebar";
+} from "@/ui/components/breadcrumb";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/ui/components/sidebar";
 
 export const Route = createFileRoute("/")({ component: App });
 
