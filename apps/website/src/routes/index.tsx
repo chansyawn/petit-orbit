@@ -1,27 +1,46 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import { AppSidebar } from "@/ui/components/app-sidebar";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbList,
+  BreadcrumbPage,
+} from "@/ui/components/ui/breadcrumb";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/ui/components/ui/sidebar";
+
 export const Route = createFileRoute("/")({ component: App });
 
 function App() {
   return (
-    <main className="mx-auto flex min-h-screen max-w-3xl items-center px-6 py-16">
-      <section className="w-full rounded-2xl border border-slate-200 bg-white p-8 shadow-sm sm:p-12">
-        <p className="mb-3 text-sm font-semibold tracking-wide text-sky-600 uppercase">
-          TanStack Start
-        </p>
-        <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">Start building.</h1>
-        <p className="mb-6 max-w-xl text-lg leading-8 text-slate-600">
-          A minimal TanStack Start page powered by Vite+ and Tailwind CSS.
-        </p>
-        <a
-          className="inline-flex rounded-lg bg-slate-900 px-4 py-2 font-medium text-white transition hover:bg-slate-700"
-          href="https://tanstack.com/start"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Read the docs
-        </a>
-      </section>
-    </main>
+    <SidebarProvider>
+      <AppSidebar />
+      <SidebarInset>
+        <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+          <SidebarTrigger className="-ml-1" />
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbPage>Wiki 总览</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </header>
+        <main className="flex flex-1 flex-col gap-6 p-4 md:p-8">
+          <section className="space-y-2">
+            <p className="text-sm font-medium text-primary">星布谷地 Wiki</p>
+            <h1 className="text-3xl font-semibold tracking-tight">探索星布谷地</h1>
+            <p className="max-w-2xl text-muted-foreground">
+              这里将整理游戏中的物品、角色、地点和冒险资料。
+            </p>
+          </section>
+          <section className="grid flex-1 gap-4 md:grid-cols-3">
+            <div className="min-h-36 rounded-xl bg-muted/50" />
+            <div className="min-h-36 rounded-xl bg-muted/50" />
+            <div className="min-h-36 rounded-xl bg-muted/50" />
+          </section>
+        </main>
+      </SidebarInset>
+    </SidebarProvider>
   );
 }
