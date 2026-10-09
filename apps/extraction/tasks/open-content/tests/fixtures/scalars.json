@@ -1,0 +1,22 @@
+{
+  "gameVersion": "0.95.2",
+  "configRevision": 1379138,
+  "samples": [
+    {
+      "id": 60204,
+      "field": 1,
+      "width": 1,
+      "read": "readUInt8",
+      "encodedHex": "57",
+      "expected": 1
+    },
+    {
+      "id": 41004,
+      "field": 17,
+      "width": 4,
+      "read": "readFloatLE",
+      "encodedHex": "6c4ece9e",
+      "expected": 0.800000011920929
+    }
+  ]
+}

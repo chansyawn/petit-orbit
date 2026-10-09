@@ -4,25 +4,26 @@ const utf8 = new TextDecoder("utf-8", { fatal: true });
 
 // This client's byte arrays are reversed and XORed with a mirrored mask.
 // Scalar storage uses the same transform for its own byte width.
-export function decodeBytes(bytes) {
+export function decodeBytes(bytes, masks = profile) {
   const n = bytes.length,
     out = Buffer.allocUnsafe(n),
-    key = (n ^ profile.byteMask) >>> 0;
+    key = (n ^ masks.byteMask) >>> 0;
   const mask = [key & 255, (key >>> 8) & 255, (key >>> 16) & 255, key >>> 24];
   for (let i = 0; i < n; i++)
     out[n - 1 - i] = bytes[i] ^ mask[i === n - 1 - i ? 0 : Math.min(i, n - 1 - i) % 4];
   return out;
 }
 
-export function decodeTextMapBucket(bytes) {
+export function decodeTextMapBucket(bytes, masks = profile) {
   if (bytes.length !== 8) throw new Error("TextMap bucket must be 8 bytes");
-  const value = decodeBytes(bytes).readBigUInt64LE(0);
+  const value = decodeBytes(bytes, masks).readBigUInt64LE(0);
   const low = Number(value & 0xffffffffn);
   return low === 0xffffffff ? null : { hash: Number(value >> 32n), index: low >>> 8 };
 }
 
 export class ObbReader {
-  constructor(file) {
+  constructor(file, masks = profile) {
+    this.masks = masks;
     this.file = Buffer.isBuffer(file) ? null : file;
     this.b = Buffer.isBuffer(file) ? file : fs.readFileSync(file);
   }
@@ -30,16 +31,17 @@ export class ObbReader {
     return Number.isSafeInteger(p) && p >= 0 && p + n <= this.b.length;
   }
   u32(p) {
-    return (this.b.readUInt32BE(p) ^ profile.wordMask) >>> 0;
+    return (this.b.readUInt32BE(p) ^ this.masks.wordMask) >>> 0;
   }
   i32(p) {
     return this.u32(p) | 0;
   }
   u16(p) {
-    return this.b.readUInt16BE(p) ^ profile.shortMask;
+    return this.b.readUInt16BE(p) ^ this.masks.shortMask;
   }
   scalar(p, n, type) {
-    const data = decodeBytes(this.b.subarray(p, p + n));
+    if (!this.inRange(p, n)) throw new Error(`Scalar out of range: ${p}, ${n}`);
+    const data = decodeBytes(this.b.subarray(p, p + n), this.masks);
     return data[type](0);
   }
   ref(p) {
@@ -73,7 +75,11 @@ export class ObbReader {
     if (!this.inRange(t)) return null;
     const n = this.u32(t);
     if (n > max || !this.inRange(t + 4, n)) return null;
-    return { offset: t + 4, length: n, bytes: decodeBytes(this.b.subarray(t + 4, t + 4 + n)) };
+    return {
+      offset: t + 4,
+      length: n,
+      bytes: decodeBytes(this.b.subarray(t + 4, t + 4 + n), this.masks),
+    };
   }
   string(p, max = 20000) {
     const data = this.bytesAtRef(p, max);

@@ -8,7 +8,7 @@ export const normalizeAssetPath = (value) =>
 const preferOverlay = (variants) =>
   variants.find((a) => /[\\/]Persistent[\\/]/i.test(a.Source)) ?? variants[0];
 
-export function createIconResolver(textures, sprites) {
+export function createIconResolver(textures, sprites, options = {}) {
   const assets = new Map(),
     spriteAssets = new Map();
   for (const a of textures) {
@@ -25,7 +25,7 @@ export function createIconResolver(textures, sprites) {
   }
   return (reference) => {
     if (!reference?.startsWith("UISprite/")) return null;
-    const key = normalizeAssetPath(profile.assetPrefix + reference);
+    const key = normalizeAssetPath((options.assetPrefix ?? profile.assetPrefix) + reference);
     let variants = assets.get(key) ?? [],
       preferred = preferOverlay(variants),
       assetType = "Texture2D";
@@ -34,6 +34,14 @@ export function createIconResolver(textures, sprites) {
         spriteAssets.get(key + "|" + normalizeAssetPath(reference.split("/").at(-1))) ?? [];
       preferred = preferOverlay(variants);
       assetType = "Sprite";
+    }
+    if (options.rejectAmbiguous && preferred) {
+      const tier = variants.filter(
+        (a) =>
+          /[\\/]Persistent[\\/]/i.test(a.Source) === /[\\/]Persistent[\\/]/i.test(preferred.Source),
+      );
+      if (new Set(tier.map((a) => a.Source + "|" + a.PathID)).size > 1)
+        throw new Error(`Ambiguous asset reference: ${reference}`);
     }
     return {
       reference,

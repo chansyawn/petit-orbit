@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "items": "node tasks/items/scripts/run.mjs",
-    "test": "node --test tasks/items/tests/*.test.mjs"
+    "open-content": "node tasks/open-content/scripts/run.mjs",
+    "test": "node --test tasks/items/tests/*.test.mjs tasks/open-content/tests/*.test.mjs"
   },
   "dependencies": {
     "pngjs": "7.0.0"
