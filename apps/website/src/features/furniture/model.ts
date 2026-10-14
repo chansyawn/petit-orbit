@@ -1,9 +1,10 @@
+import { splitValues } from "@/features/catalog/model";
+export { paginate, splitValues, parseId, pageSize } from "@/features/catalog/model";
 import type { FurnitureItem, FurnitureSet } from "@petit-orbit/content-schema";
 
 export type FurnitureCatalog = { items: FurnitureItem[]; sets: FurnitureSet[] };
 export const furniturePath = "/collection/furniture";
 export const setsPath = "/collection/furniture/sets";
-export const pageSize = 24;
 export type CatalogSearch = {
   q: string;
   category: string;
@@ -29,16 +30,6 @@ export function parseSearch(input: Record<string, unknown>): CatalogSearch {
   };
 }
 export const defaultSearch = parseSearch({});
-export function splitValues(value: string | null): string[] {
-  return [
-    ...new Set(
-      (value ?? "")
-        .split("，")
-        .map((part) => part.trim())
-        .filter(Boolean),
-    ),
-  ];
-}
 export function filterFurniture(items: FurnitureItem[], search: CatalogSearch) {
   return items.filter(
     (item) =>
@@ -49,16 +40,6 @@ export function filterFurniture(items: FurnitureItem[], search: CatalogSearch) {
       (!search.color || splitValues(item.colors).includes(search.color)) &&
       (!search.material || splitValues(item.materials).includes(search.material)),
   );
-}
-export function paginate<T>(items: T[], requestedPage: number) {
-  const pages = Math.max(1, Math.ceil(items.length / pageSize));
-  const page = Math.min(pages, Math.max(1, requestedPage));
-  return {
-    items: items.slice((page - 1) * pageSize, page * pageSize),
-    page,
-    pages,
-    total: items.length,
-  };
 }
 export function filterOptions(items: FurnitureItem[]) {
   const unique = (values: string[]) =>
@@ -105,8 +86,4 @@ export function parseReturnTo(value: unknown) {
 }
 export function parseDetailSearch(input: Record<string, unknown>) {
   return { returnTo: parseReturnTo(input.returnTo)?.href };
-}
-export function parseId(value: string): number | undefined {
-  const id = Number(value);
-  return /^\d+$/.test(value) && Number.isSafeInteger(id) && id > 0 ? id : undefined;
 }

@@ -12,3 +12,12 @@ export function loadFurnitureCatalog() {
   const content = loadContent();
   return { items: groupAt(content, "furniture.items"), sets: groupAt(content, "furniture.sets") };
 }
+
+export function loadClothingCatalog() {
+  const content = loadContent();
+  return {
+    items: groupAt(content, "clothing.items"),
+    sets: groupAt(content, "clothing.sets"),
+    appearances: groupAt(content, "clothing.appearances"),
+  };
+}

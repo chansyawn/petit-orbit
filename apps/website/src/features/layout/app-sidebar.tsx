@@ -8,6 +8,7 @@ import {
   PackageIcon,
   ShirtIcon,
   CookingPotIcon,
+  SmileIcon,
 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import {
@@ -28,6 +29,8 @@ const navItems = [
   { title: "生物", to: "/collection/creatures", icon: BugIcon },
   { title: "杂物", to: "/collection/miscellany", icon: PackageIcon },
   { title: "服饰", to: "/collection/clothing", icon: ShirtIcon },
+  { title: "服饰套装", to: "/collection/clothing/sets", icon: LayersIcon },
+  { title: "外观", to: "/collection/clothing/appearances", icon: SmileIcon },
   { title: "菜肴", to: "/collection/dishes", icon: CookingPotIcon },
 ] as const;
 
