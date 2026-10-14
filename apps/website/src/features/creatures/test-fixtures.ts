@@ -1,0 +1,53 @@
+import type { CreatureCatalog } from "./model";
+export const catalog: CreatureCatalog = {
+  items: [
+    {
+      id: 1,
+      name: "测试鱼",
+      image: null,
+      description: "第一行\n第二行",
+      quality: 0,
+      category: "水生生物",
+      region: "禾夏",
+      habitat: "河流",
+      activeSeasons: "春季， 夏季，春季",
+      activeTimes: "白天",
+      activeWeather: "雨天",
+      sizeRange: null,
+    },
+    {
+      id: 2,
+      name: "全年鱼",
+      image: null,
+      description: null,
+      quality: 2,
+      category: "水生生物",
+      region: "禾夏",
+      habitat: "河流",
+      activeSeasons: "全年",
+      activeTimes: "全天",
+      activeWeather: "任意天气",
+      sizeRange: "小型",
+    },
+  ],
+  series: [
+    {
+      id: 10,
+      name: "河流系列",
+      image: null,
+      description: null,
+      quality: 1,
+      seriesName: "正式系列名",
+      creatureIds: [2, 1],
+    },
+    {
+      id: 11,
+      name: "测试鱼",
+      image: null,
+      description: null,
+      quality: 1,
+      seriesName: null,
+      creatureIds: [2],
+    },
+  ],
+};

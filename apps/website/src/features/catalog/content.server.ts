@@ -21,3 +21,11 @@ export function loadClothingCatalog() {
     appearances: groupAt(content, "clothing.appearances"),
   };
 }
+
+export function loadCreatureCatalog() {
+  const content = loadContent();
+  return {
+    items: groupAt(content, "creatures.items"),
+    series: groupAt(content, "creatures.series"),
+  };
+}
