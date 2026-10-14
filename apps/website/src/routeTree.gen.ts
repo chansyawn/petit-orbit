@@ -10,16 +10,26 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ItemsRouteImport } from './routes/items'
 import { Route as CollectionClothingRouteImport } from './routes/collection.clothing'
 import { Route as CollectionCreaturesRouteImport } from './routes/collection.creatures'
 import { Route as CollectionDishesRouteImport } from './routes/collection.dishes'
 import { Route as CollectionFurnitureRouteImport } from './routes/collection.furniture'
 import { Route as CollectionMiscellanyRouteImport } from './routes/collection.miscellany'
 import { Route as CollectionPlantsRouteImport } from './routes/collection.plants'
+import { Route as CollectionFurnitureIndexRouteImport } from './routes/collection.furniture.index'
+import { Route as CollectionFurnitureIdRouteImport } from './routes/collection.furniture.$id'
+import { Route as CollectionFurnitureSetsRouteImport } from './routes/collection.furniture.sets'
+import { Route as CollectionFurnitureSetsIdRouteImport } from './routes/collection.furniture.sets_.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ItemsRoute = ItemsRouteImport.update({
+  id: '/items',
+  path: '/items',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CollectionClothingRoute = CollectionClothingRouteImport.update({
@@ -52,71 +62,122 @@ const CollectionPlantsRoute = CollectionPlantsRouteImport.update({
   path: '/collection/plants',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CollectionFurnitureIndexRoute =
+  CollectionFurnitureIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => CollectionFurnitureRoute,
+  } as any)
+const CollectionFurnitureIdRoute = CollectionFurnitureIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => CollectionFurnitureRoute,
+} as any)
+const CollectionFurnitureSetsRoute = CollectionFurnitureSetsRouteImport.update({
+  id: '/sets',
+  path: '/sets',
+  getParentRoute: () => CollectionFurnitureRoute,
+} as any)
+const CollectionFurnitureSetsIdRoute =
+  CollectionFurnitureSetsIdRouteImport.update({
+    id: '/sets_/$id',
+    path: '/sets/$id',
+    getParentRoute: () => CollectionFurnitureRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/items': typeof ItemsRoute
   '/collection/clothing': typeof CollectionClothingRoute
   '/collection/creatures': typeof CollectionCreaturesRoute
   '/collection/dishes': typeof CollectionDishesRoute
-  '/collection/furniture': typeof CollectionFurnitureRoute
+  '/collection/furniture': typeof CollectionFurnitureRouteWithChildren
   '/collection/miscellany': typeof CollectionMiscellanyRoute
   '/collection/plants': typeof CollectionPlantsRoute
+  '/collection/furniture/$id': typeof CollectionFurnitureIdRoute
+  '/collection/furniture/sets': typeof CollectionFurnitureSetsRoute
+  '/collection/furniture/': typeof CollectionFurnitureIndexRoute
+  '/collection/furniture/sets/$id': typeof CollectionFurnitureSetsIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/items': typeof ItemsRoute
   '/collection/clothing': typeof CollectionClothingRoute
   '/collection/creatures': typeof CollectionCreaturesRoute
   '/collection/dishes': typeof CollectionDishesRoute
-  '/collection/furniture': typeof CollectionFurnitureRoute
   '/collection/miscellany': typeof CollectionMiscellanyRoute
   '/collection/plants': typeof CollectionPlantsRoute
+  '/collection/furniture/$id': typeof CollectionFurnitureIdRoute
+  '/collection/furniture/sets': typeof CollectionFurnitureSetsRoute
+  '/collection/furniture': typeof CollectionFurnitureIndexRoute
+  '/collection/furniture/sets/$id': typeof CollectionFurnitureSetsIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/items': typeof ItemsRoute
   '/collection/clothing': typeof CollectionClothingRoute
   '/collection/creatures': typeof CollectionCreaturesRoute
   '/collection/dishes': typeof CollectionDishesRoute
-  '/collection/furniture': typeof CollectionFurnitureRoute
+  '/collection/furniture': typeof CollectionFurnitureRouteWithChildren
   '/collection/miscellany': typeof CollectionMiscellanyRoute
   '/collection/plants': typeof CollectionPlantsRoute
+  '/collection/furniture/$id': typeof CollectionFurnitureIdRoute
+  '/collection/furniture/sets': typeof CollectionFurnitureSetsRoute
+  '/collection/furniture/': typeof CollectionFurnitureIndexRoute
+  '/collection/furniture/sets_/$id': typeof CollectionFurnitureSetsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/items'
     | '/collection/clothing'
     | '/collection/creatures'
     | '/collection/dishes'
     | '/collection/furniture'
     | '/collection/miscellany'
     | '/collection/plants'
+    | '/collection/furniture/$id'
+    | '/collection/furniture/sets'
+    | '/collection/furniture/'
+    | '/collection/furniture/sets/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/items'
     | '/collection/clothing'
     | '/collection/creatures'
     | '/collection/dishes'
-    | '/collection/furniture'
     | '/collection/miscellany'
     | '/collection/plants'
+    | '/collection/furniture/$id'
+    | '/collection/furniture/sets'
+    | '/collection/furniture'
+    | '/collection/furniture/sets/$id'
   id:
     | '__root__'
     | '/'
+    | '/items'
     | '/collection/clothing'
     | '/collection/creatures'
     | '/collection/dishes'
     | '/collection/furniture'
     | '/collection/miscellany'
     | '/collection/plants'
+    | '/collection/furniture/$id'
+    | '/collection/furniture/sets'
+    | '/collection/furniture/'
+    | '/collection/furniture/sets_/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ItemsRoute: typeof ItemsRoute
   CollectionClothingRoute: typeof CollectionClothingRoute
   CollectionCreaturesRoute: typeof CollectionCreaturesRoute
   CollectionDishesRoute: typeof CollectionDishesRoute
-  CollectionFurnitureRoute: typeof CollectionFurnitureRoute
+  CollectionFurnitureRoute: typeof CollectionFurnitureRouteWithChildren
   CollectionMiscellanyRoute: typeof CollectionMiscellanyRoute
   CollectionPlantsRoute: typeof CollectionPlantsRoute
 }
@@ -128,6 +189,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/items': {
+      id: '/items'
+      path: '/items'
+      fullPath: '/items'
+      preLoaderRoute: typeof ItemsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/collection/clothing': {
@@ -172,15 +240,61 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CollectionPlantsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/collection/furniture/': {
+      id: '/collection/furniture/'
+      path: '/'
+      fullPath: '/collection/furniture/'
+      preLoaderRoute: typeof CollectionFurnitureIndexRouteImport
+      parentRoute: typeof CollectionFurnitureRoute
+    }
+    '/collection/furniture/$id': {
+      id: '/collection/furniture/$id'
+      path: '/$id'
+      fullPath: '/collection/furniture/$id'
+      preLoaderRoute: typeof CollectionFurnitureIdRouteImport
+      parentRoute: typeof CollectionFurnitureRoute
+    }
+    '/collection/furniture/sets': {
+      id: '/collection/furniture/sets'
+      path: '/sets'
+      fullPath: '/collection/furniture/sets'
+      preLoaderRoute: typeof CollectionFurnitureSetsRouteImport
+      parentRoute: typeof CollectionFurnitureRoute
+    }
+    '/collection/furniture/sets_/$id': {
+      id: '/collection/furniture/sets_/$id'
+      path: '/sets/$id'
+      fullPath: '/collection/furniture/sets/$id'
+      preLoaderRoute: typeof CollectionFurnitureSetsIdRouteImport
+      parentRoute: typeof CollectionFurnitureRoute
+    }
   }
 }
 
+interface CollectionFurnitureRouteChildren {
+  CollectionFurnitureIdRoute: typeof CollectionFurnitureIdRoute
+  CollectionFurnitureSetsRoute: typeof CollectionFurnitureSetsRoute
+  CollectionFurnitureIndexRoute: typeof CollectionFurnitureIndexRoute
+  CollectionFurnitureSetsIdRoute: typeof CollectionFurnitureSetsIdRoute
+}
+
+const CollectionFurnitureRouteChildren: CollectionFurnitureRouteChildren = {
+  CollectionFurnitureIdRoute: CollectionFurnitureIdRoute,
+  CollectionFurnitureSetsRoute: CollectionFurnitureSetsRoute,
+  CollectionFurnitureIndexRoute: CollectionFurnitureIndexRoute,
+  CollectionFurnitureSetsIdRoute: CollectionFurnitureSetsIdRoute,
+}
+
+const CollectionFurnitureRouteWithChildren =
+  CollectionFurnitureRoute._addFileChildren(CollectionFurnitureRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ItemsRoute: ItemsRoute,
   CollectionClothingRoute: CollectionClothingRoute,
   CollectionCreaturesRoute: CollectionCreaturesRoute,
   CollectionDishesRoute: CollectionDishesRoute,
-  CollectionFurnitureRoute: CollectionFurnitureRoute,
+  CollectionFurnitureRoute: CollectionFurnitureRouteWithChildren,
   CollectionMiscellanyRoute: CollectionMiscellanyRoute,
   CollectionPlantsRoute: CollectionPlantsRoute,
 }

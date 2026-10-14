@@ -1,6 +1,7 @@
 import * as React from "react";
 import {
   HomeIcon,
+  LayersIcon,
   ArmchairIcon,
   SproutIcon,
   BugIcon,
@@ -20,6 +21,8 @@ import {
 } from "@/ui/components/sidebar";
 
 const navItems = [
+  { title: "物品图鉴", to: "/items", icon: PackageIcon },
+  { title: "家具套组", to: "/collection/furniture/sets", icon: LayersIcon },
   { title: "家具", to: "/collection/furniture", icon: ArmchairIcon },
   { title: "植物", to: "/collection/plants", icon: SproutIcon },
   { title: "生物", to: "/collection/creatures", icon: BugIcon },
