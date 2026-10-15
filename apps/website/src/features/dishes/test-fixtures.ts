@@ -1,0 +1,58 @@
+import type { DishCatalog } from "./model";
+export const catalog: DishCatalog = {
+  items: [
+    {
+      id: 1,
+      name: "测试茶",
+      image: null,
+      description: "第一行\n第二行",
+      quality: 0,
+      difficulty: "简单",
+      galaxyFlavor: "禾夏风味",
+      cookware: "煮锅",
+      effects: "增加 30 力气",
+    },
+    {
+      id: 2,
+      name: "普通茶",
+      image: null,
+      description: null,
+      quality: 2,
+      difficulty: "招牌",
+      galaxyFlavor: "塔法风味",
+      cookware: "烤箱",
+      effects: "增加 60 力气",
+    },
+    {
+      id: 3,
+      name: "未归属菜肴",
+      image: null,
+      description: null,
+      quality: null,
+      difficulty: null,
+      galaxyFlavor: null,
+      cookware: null,
+      effects: null,
+    },
+  ],
+  series: [
+    {
+      id: 10,
+      name: "饮品",
+      image: null,
+      description: null,
+      quality: 1,
+      seriesName: "正式系列名",
+      dishIds: [2, 1],
+    },
+    {
+      id: 11,
+      name: "测试茶",
+      image: null,
+      description: null,
+      quality: null,
+      seriesName: null,
+      dishIds: [2],
+    },
+  ],
+};

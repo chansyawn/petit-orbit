@@ -34,3 +34,8 @@ export function loadPlantCatalog() {
   const content = loadContent();
   return { items: groupAt(content, "plants.items"), series: groupAt(content, "plants.series") };
 }
+
+export function loadDishCatalog() {
+  const content = loadContent();
+  return { items: groupAt(content, "dishes.items"), series: groupAt(content, "dishes.series") };
+}

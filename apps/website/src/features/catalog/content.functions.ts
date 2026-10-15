@@ -4,6 +4,7 @@ import {
   loadClothingCatalog,
   loadCreatureCatalog,
   loadPlantCatalog,
+  loadDishCatalog,
 } from "./content.server";
 
 export const getFurnitureCatalog = createServerFn({ method: "GET" }).handler(() =>
@@ -19,3 +20,5 @@ export const getCreatureCatalog = createServerFn({ method: "GET" }).handler(() =
 );
 
 export const getPlantCatalog = createServerFn({ method: "GET" }).handler(() => loadPlantCatalog());
+
+export const getDishCatalog = createServerFn({ method: "GET" }).handler(() => loadDishCatalog());
