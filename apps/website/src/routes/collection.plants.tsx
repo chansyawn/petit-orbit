@@ -1,13 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { WikiLayout } from "@/features/layout/wiki-layout";
-import { WikiPage } from "@/features/layout/wiki-page";
+import { getPlantCatalog } from "@/features/catalog/content.functions";
+import { PlantError, PlantLayout, PlantNotFound } from "@/features/plants/layout";
 
-export const Route = createFileRoute("/collection/plants")({ component: PlantsPage });
-
-function PlantsPage() {
-  return (
-    <WikiLayout>
-      <WikiPage eyebrow="万象收藏" title="植物" description="浏览星布谷地中的植物收藏。" />
-    </WikiLayout>
-  );
-}
+export const Route = createFileRoute("/collection/plants")({
+  loader: () => getPlantCatalog(),
+  staleTime: Infinity,
+  gcTime: Infinity,
+  component: PlantLayout,
+  errorComponent: PlantError,
+  notFoundComponent: PlantNotFound,
+});

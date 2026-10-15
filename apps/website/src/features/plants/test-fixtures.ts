@@ -1,0 +1,58 @@
+import type { PlantCatalog } from "./model";
+export const catalog: PlantCatalog = {
+  items: [
+    {
+      id: 1,
+      name: "测试花",
+      image: null,
+      description: "第一行\n第二行",
+      quality: 0,
+      category: "花",
+      originGalaxy: "禾夏",
+      maturityPeriod: null,
+      harvestCount: 0,
+    },
+    {
+      id: 2,
+      name: "普通花",
+      image: null,
+      description: null,
+      quality: 2,
+      category: "花",
+      originGalaxy: "塔法",
+      maturityPeriod: "三天",
+      harvestCount: 3,
+    },
+    {
+      id: 3,
+      name: "未归属植物",
+      image: null,
+      description: null,
+      quality: 1,
+      category: "环境植物",
+      originGalaxy: null,
+      maturityPeriod: null,
+      harvestCount: null,
+    },
+  ],
+  series: [
+    {
+      id: 10,
+      name: "花系列",
+      image: null,
+      description: null,
+      quality: 1,
+      seriesName: "正式系列名",
+      plantIds: [2, 1],
+    },
+    {
+      id: 11,
+      name: "测试花",
+      image: null,
+      description: null,
+      quality: null,
+      seriesName: null,
+      plantIds: [2],
+    },
+  ],
+};

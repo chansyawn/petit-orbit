@@ -29,3 +29,8 @@ export function loadCreatureCatalog() {
     series: groupAt(content, "creatures.series"),
   };
 }
+
+export function loadPlantCatalog() {
+  const content = loadContent();
+  return { items: groupAt(content, "plants.items"), series: groupAt(content, "plants.series") };
+}
