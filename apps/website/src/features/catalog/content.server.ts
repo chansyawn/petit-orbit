@@ -39,3 +39,8 @@ export function loadDishCatalog() {
   const content = loadContent();
   return { items: groupAt(content, "dishes.items"), series: groupAt(content, "dishes.series") };
 }
+
+export function loadMiscellanyCatalog() {
+  const content = loadContent();
+  return { items: groupAt(content, "miscellaneous") };
+}
