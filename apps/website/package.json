@@ -8,7 +8,7 @@
   "scripts": {
     "generate-routes": "tsr generate",
     "preview": "vp preview",
-    "dev": "vp dev --port 3000",
+    "dev": "vp dev --port 3250",
     "build": "vp build",
     "test": "vp test"
   },
